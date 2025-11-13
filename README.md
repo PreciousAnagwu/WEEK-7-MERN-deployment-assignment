@@ -1,16 +1,16 @@
-# 💬 Real-Time Chat Application (Week 5 MERN Assignment)
+# MERN Deployment & DevOps Essentials
 
-This project is a **real-time chat application** built with the **MERN stack** and **Socket.io**, demonstrating live bidirectional communication between multiple clients and the server.  
-It allows users to chat in real time, see who’s online, get notifications, and enjoy a smooth, responsive experience.
+This project demonstrates how to deploy a full MERN Stack application with CI/CD pipelines, automated testing, linting, and monitoring.
+It includes a React frontend and a Node.js/Express backend connected to MongoDB Atlas.
 
 ---
 
-## 🚀 Objectives
+## 🌐 Deployment Links
 
-- Build a real-time communication app using **Socket.io**
-- Implement **live chat**, **user status**, and **notifications**
-- Demonstrate **bidirectional** and **event-driven** communication
+Environment                     	URL
+Frontend (Production)	         [[https://week-7-mern-deployment-assignment.vercel.app/]
 
+Backend API (Production)	   [https://week-7-mern-deployment-assignment.onrender.com]
 ---
 
 ## 🧱 Tech Stack
@@ -18,70 +18,94 @@ It allows users to chat in real time, see who’s online, get notifications, and
 **Frontend:** React (Vite), Tailwind CSS  
 **Backend:** Node.js, Express.js, MongoDB  
 **Real-time Engine:** Socket.io  
-**Authentication:** JWT (username-based)  
-**Database:** MongoDB Atlas / Local MongoDB  
-**Environment Management:** dotenv  
+**Database:** MongoDB Atlas
+**CI/CD:** GitHub Actions + Render Deploy Hooks
+**Monitoring:** Render Logs + UptimeRobot  
 ---
 
 ## ⚙️ Installation & Setup
 
-### 🖥️ Server Setup
-```bash
-cd server
+###   Clone the repository
+```
+git clone https://github.com/<your-username>/WEEK-7-MERN-deployment-assignment.git
+cd WEEK-7-MERN-deployment-assignment
+```
+
+###   Setup the backend:
+```
+cd backend
 npm install
+npm run start
 ```
 
-Create a `.env` file in the **server** directory:
-```env
-PORT=4000
-MONGO_URI=mongodb://localhost:27017/chatapp
-JWT_SECRET=se3f9b8a1a4d3c7f9b2cde6a4f7b9c3d4e5a6f708d9c1b2a3c4d5e6f7a8b9c0d1
-CLIENT_ORIGIN=http://localhost:5173
+###   Setup the frontend:
 ```
-
-Start the server:
-```bash
-npm start
-```
-
-### 💻 Client Setup
-```bash
 cd client
 npm install
 npm run dev
 ```
+###   Environment variables
 
-Then open [http://localhost:5173](http://localhost:5173) in your browser.
+Duplicate .env.example → .env in both backend/ and client/ directories, and fill in your values.
 
 ---
 
-## 🧠 How It Works
+## 🧪 CI/CD Pipeline
 
-1. The **server** handles all socket connections and broadcasts events.  
-2. Each user joins a global room or a private room.  
-3. Messages are emitted in real time and stored in MongoDB.  
-4. Socket.io events handle:
-   - `message`
-   - `typing`
-   - `user_connected`
-   - `user_disconnected`
+1. Branch protection: Only tested code merges to main.
+
+2. Continuous Integration (CI):
+
+Runs linting and tests automatically.
+
+Builds both frontend and backend on push.
+
+3. Continuous Deployment (CD):
+
+Auto-deploys to staging from develop branch.
+
+Auto-deploys to production from main branch.
 
 ---
 
 ## 🖼️ Screenshot
 
-![App Screenshot](./Screenshot_WK5.png)
+![CI Workflow Success](./ci.png)
 
 ---
 
+##   📊 Monitoring Setup
+
+Monitoring is configured using:
+
+-   Render built-in logs (for backend crash/error monitoring)
+
+-   UptimeRobot to ping the /healthz endpoint every 5 minutes
+
+      -   Alert sent if downtime > 1 minute.
+
+Example Health Check Endpoint
+// backend/server.js
+app.get('/healthz', (req, res) => {
+  res.status(200).json({ status: 'OK', uptime: process.uptime() });
+});
+
+##   🔄 Rollback & Recovery
+
+Option 1: Use Render Dashboard → revert to last successful deploy
+Option 2: Git rollback
+
+git revert <bad_commit_sha>
+git push origin main
+
 ## 👩‍💻 Author
 
-**Name:** Anagwu Precious Chinemerem  
-**Program:** PLP Academy – MERN Stack Specialization (Week 5)  
-**Project:** Real-Time Chat Application with Socket.io  
+**Name:** Anagwu Precious Chinemerem 
+**Email:**   panagwu@gmail.com
+**Program:** PLP Academy – MERN Stack Specialization (Week 7)  
 
 ---
 
 ## 🏁 License
 
-This project is for educational purposes under the **PLP Academy Week 5 MERN Stack Assignment**.
+This project is for educational purposes under the **PLP Academy Week 7 MERN Stack Assignment**.
