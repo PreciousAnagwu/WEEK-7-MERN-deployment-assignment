@@ -70,7 +70,7 @@ Auto-deploys to production from main branch.
 
 ## 🖼️ Screenshot
 
-![CI Workflow Success](./ci.png)
+![CI Workflow ](./ci.png)
 
 ---
 
