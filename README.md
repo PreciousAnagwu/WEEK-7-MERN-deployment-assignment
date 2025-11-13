@@ -7,10 +7,10 @@ It includes a React frontend and a Node.js/Express backend connected to MongoDB 
 
 ## 🌐 Deployment Links
 
-Environment                     	URL
-Frontend (Production)	         [[https://week-7-mern-deployment-assignment.vercel.app/]
+Frontend (Production)	         [https://week-7-mern-deployment-assignment.vercel.app/]
 
-Backend API (Production)	   [https://week-7-mern-deployment-assignment.onrender.com]
+
+Backend API (Production)   [https://week-7-mern-deployment-assignment.onrender.com]
 ---
 
 ## 🧱 Tech Stack
